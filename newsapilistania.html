@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tania News</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f4f7;
+    }
+    header {
+      background-color: #0066cc;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .search-bar input, .search-bar select {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+      margin: 5px;
+    }
+    .search-bar input {
+      width: 60%;
+      max-width: 400px;
+    }
+    .container-news {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+    }
+    .card-content h2 {
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .btn-read {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+    .full-content {
+      display: none;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .btn-close {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 15px;
+      float: right;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+    }
+    footer a {
+      color: #66b2ff;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Tania News</a>
+  </nav>
+
+  <header>
+    <h1>Portal Berita Terkini</h1>
+  </header>
+
+  <!-- Search dan Kategori -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Ketik untuk mencari berita...">
+    <select id="categoryFilter">
+      <option value="semua">Semua Kategori</option>
+      <option value="kesehatan">Kesehatan</option>
+      <option value="teknologi">Teknologi</option>
+      <option value="budaya">Budaya</option>
+      <option value="pendidikan">Pendidikan</option>
+      <option value="ekonomi">Ekonomi</option>
+      <option value="hiburan">Hiburan</option>
+    </select>
+  </div>
+
+  <!-- Berita -->
+  <div class="container-news" id="newsContainer">
+    <!-- Berita 1 -->
+    <div class="card" data-category="kesehatan">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Berita 1">
+      <div class="card-content">
+        <h2>1. Makan Siang Gratis untuk Tenaga Medis</h2>
+        <button class="btn-read" onclick="showContent(1)">Baca Selengkapnya</button>
+      </div>
+      <div class="full-content" id="content1">
+        <button class="btn-close" onclick="closeContent(1)">Tutup</button>
+        <h2>Makan Siang Gratis untuk Tenaga Medis</h2>
+        <p>Program ini dilaksanakan untuk menghargai perjuangan para tenaga medis dalam menghadapi pandemi. Ratusan tenaga medis mendapat santunan berupa makan siang gratis setiap hari dari berbagai donatur.</p>
+      </div>
+    </div>
+
+    <!-- Berita 2 -->
+    <div class="card" data-category="teknologi">
+      <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df" alt="Berita 2">
+      <div class="card-content">
+        <h2>2. Teknologi Baru untuk Pertanian Modern</h2>
+        <button class="btn-read" onclick="showContent(2)">Baca Selengkapnya</button>
+      </div>
+      <div class="full-content" id="content2">
+        <button class="btn-close" onclick="closeContent(2)">Tutup</button>
+        <h2>Teknologi Baru untuk Pertanian Modern</h2>
+        <p>Alat pertanian modern telah membantu meningkatkan produktivitas dan efisiensi petani dalam mengelola lahan. Dengan teknologi ini, hasil panen meningkat hingga 30%.</p>
+      </div>
+    </div>
+
+    <!-- Berita 3 -->
+    <div class="card" data-category="budaya">
+      <img src="https://images.unsplash.com/photo-1553484771-371a605b060b" alt="Berita 3">
+      <div class="card-content">
+        <h2>3. Festival Budaya Menarik Perhatian Wisatawan</h2>
+        <button class="btn-read" onclick="showContent(3)">Baca Selengkapnya</button>
+      </div>
+      <div class="full-content" id="content3">
+        <button class="btn-close" onclick="closeContent(3)">Tutup</button>
+        <h2>Festival Budaya Menarik Perhatian Wisatawan</h2>
+        <p>Festival budaya tahunan ini menjadi daya tarik utama wisatawan lokal dan internasional, menampilkan tarian tradisional, kuliner khas, dan kerajinan unik.</p>
+      </div>
+    </div>
+
+    <!-- Berita 4 -->
+    <div class="card" data-category="pendidikan">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Berita 4">
+      <div class="card-content">
+        <h2>4. Sekolah Kembali Dibuka dengan Protokol Ketat</h2>
+        <button class="btn-read" onclick="showContent(4)">Baca Selengkapnya</button>
+      </div>
+      <div class="full-content" id="content4">
+        <button class="btn-close" onclick="closeContent(4)">Tutup</button>
+        <h2>Sekolah Kembali Dibuka dengan Protokol Ketat</h2>
+        <p>Pembelajaran tatap muka kembali dilaksanakan dengan protokol kesehatan yang ketat untuk memastikan keamanan siswa dan guru.</p>
+      </div>
+    </div>
+
+    <!-- Berita 5 -->
+    <div class="card" data-category="ekonomi">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Berita 5">
+      <div class="card-content">
+        <h2>5. UMKM Bangkit di Tengah Tantangan Ekonomi</h2>
+        <button class="btn-read" onclick="showContent(5)">Baca Selengkapnya</button>
+      </div>
+      <div class="full-content" id="content5">
+        <button class="btn-close" onclick="closeContent(5)">Tutup</button>
+        <h2>UMKM Bangkit di Tengah Tantangan Ekonomi</h2>
+        <p>Pelaku UMKM terus berinovasi dalam menghadapi kondisi ekonomi sulit dengan memanfaatkan platform digital untuk meningkatkan penjualan.</p>
+      </div>
+    </div>
+
+    <!-- Berita 6 -->
+    <div class="card" data-category="hiburan">
+      <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e" alt="Berita 6">
+      <div class="card-content">
+        <h2>6. Konser Musik Online Menjadi Tren Baru</h2>
+        <button class="btn-read" onclick="showContent(6)">Baca Selengkapnya</button>
+      </div>
+      <div class="full-content" id="content6">
+        <button class="btn-close" onclick="closeContent(6)">Tutup</button>
+        <h2>Konser Musik Online Menjadi Tren Baru</h2>
+        <p>Konser virtual memungkinkan penikmat musik menyaksikan pertunjukan dari rumah, menjadi tren hiburan baru di era digital.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Tania News. Semua hak dilindungi.</p>
+    <p>
+      <a href="#">Tentang Kami</a> |
+      <a href="#">Kontak</a> |
+      <a href="#">Privasi</a>
+    </p>
+  </footer>
+
+  <script>
+    // tampilkan isi berita
+    function showContent(id) {
+      document.getElementById(`content${id}`).style.display = 'block';
+    }
+    function closeContent(id) {
+      document.getElementById(`content${id}`).style.display = 'none';
+    }
+
+    // pencarian berita
+    document.getElementById('searchInput').addEventListener('keyup', filterBerita);
+    document.getElementById('categoryFilter').addEventListener('change', filterBerita);
+
+    function filterBerita() {
+      let filterText = document.getElementById('searchInput').value.toLowerCase();
+      let selectedCategory = document.getElementById('categoryFilter').value;
+
+      document.querySelectorAll('#newsContainer .card').forEach(function (card) {
+        let text = card.innerText.toLowerCase();
+        let category = card.getAttribute('data-category');
+
+        let matchText = text.includes(filterText);
+        let matchCategory = (selectedCategory === 'semua' || selectedCategory === category);
+
+        card.style.display = matchText && matchCategory ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
